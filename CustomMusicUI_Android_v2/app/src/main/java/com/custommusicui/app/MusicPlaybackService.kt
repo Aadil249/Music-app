@@ -324,7 +324,7 @@ class MusicPlaybackService : Service() {
         ioExecutor.execute {
             try {
                 // Upgrade low-res thumbnail URLs to sharper square cover art
-                val hiRes = urlStr.replace(Regex("=w\d+-h\d+"), "=w544-h544")
+                val hiRes = urlStr.replace(Regex("=w\\d+-h\\d+"), "=w544-h544")
                 val conn = URL(hiRes).openConnection() as HttpURLConnection
                 conn.connectTimeout = 5000
                 conn.readTimeout = 5000
