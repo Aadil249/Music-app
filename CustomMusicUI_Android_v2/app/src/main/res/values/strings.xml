@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CustomMusicUI</string>
+    <string name="cd_album_art">Album Art</string>
+    <string name="cd_close">Close Widget</string>
+    <string name="cd_prev">Previous Track</string>
+    <string name="cd_play_pause">Play or Pause</string>
+    <string name="cd_next">Next Track</string>
+    <string name="cd_like">Like Song</string>
+    <string name="cd_aod">Toggle AMOLED AOD Mode</string>
+    <string name="cd_layout">Switch Widget Layout</string>
+</resources>

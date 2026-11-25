@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF000000">
+
+    <!-- DYNAMIC ALBUM BLUR BACKDROP -->
+    <ImageView
+        android:id="@+id/imgBackdrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/cd_album_art"
+        android:scaleType="centerCrop"
+        android:src="@drawable/album_placeholder" />
+
+    <!-- THEME / SCRIM LAYER -->
+    <View
+        android:id="@+id/viewBackdropScrim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#8808080E" />
+
+    <!-- MAIN LOCK SCREEN CONTENT -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- TOP BAR: TIMER BADGE + AOD TOGGLE -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtTimerBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_pill_chip"
+                android:paddingStart="10dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="4dp"
+                android:textColor="#FFA78BFA"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/btnLockAod"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_round_btn"
+                android:contentDescription="@string/cd_aod"
+                android:padding="8dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_moon" />
+        </LinearLayout>
+
+        <!-- AESTHETIC CLOCK (TAP TO CYCLE STYLES) -->
+        <TextView
+            android:id="@+id/txtClock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="10:36"
+            android:textColor="#FFFFFFFF"
+            android:textSize="68sp" />
+
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wed, Nov 25"
+            android:textColor="#CCFFFFFF"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- FROSTED GLASS LOCK SCREEN WIDGET -->
+        <LinearLayout
+            android:id="@+id/cardGlassWidget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_widget_card"
+            android:elevation="16dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- HEADER ROW: ALBUM ART + INFO + LAYOUT SWITCHER -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardAlbumContainer"
+                    android:layout_width="86dp"
+                    android:layout_height="86dp"
+                    app:cardBackgroundColor="#FF14141A"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp">
+
+                    <ImageView
+                        android:id="@+id/imgLockArt"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/cd_album_art"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/album_placeholder" />
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:letterSpacing="0.08"
+                            android:text="YT MUSIC • HI-FI"
+                            android:textColor="#99A78BFA"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <ImageButton
+                            android:id="@+id/btnLockLayout"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:background="@drawable/bg_close_btn"
+                            android:contentDescription="@string/cd_layout"
+                            android:padding="5dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_layout" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txtLockTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="Nothing Playing"
+                        android:textColor="#FFFFFFFF"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtLockArtist"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="YouTube Music"
+                        android:textColor="#BBFFFFFF"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- PROGRESS BAR -->
+            <SeekBar
+                android:id="@+id/seekLockProgress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:max="1000"
+                android:maxHeight="5dp"
+                android:minHeight="5dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:progressDrawable="@drawable/progress_pill"
+                android:splitTrack="false"
+                android:thumb="@android:color/transparent"
+                android:thumbOffset="0dp" />
+
+            <LinearLayout
+                android:id="@+id/rowLockTimes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtLockElapsed"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0:00"
+                    android:textColor="#99FFFFFF"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/txtLockTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0:00"
+                    android:textColor="#99FFFFFF"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- TRANSPORT CONTROLS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnLockLike"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="14dp"
+                    android:background="@drawable/bg_round_btn"
+                    android:contentDescription="@string/cd_like"
+                    android:padding="9dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_heart_outline" />
+
+                <ImageButton
+                    android:id="@+id/btnLockPrev"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_marginEnd="14dp"
+                    android:background="@drawable/bg_round_btn"
+                    android:contentDescription="@string/cd_prev"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_prev" />
+
+                <ImageButton
+                    android:id="@+id/btnLockPlayPause"
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:background="@drawable/bg_play_btn"
+                    android:contentDescription="@string/cd_play_pause"
+                    android:padding="13dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_play" />
+
+                <ImageButton
+                    android:id="@+id/btnLockNext"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="14dp"
+                    android:background="@drawable/bg_round_btn"
+                    android:contentDescription="@string/cd_next"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_next" />
+            </LinearLayout>
+
+            <!-- FEATURE DRAWER TABS -->
+            <LinearLayout
+                android:id="@+id/rowLockFeatureTabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnTabEq"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:text="Hi-Fi EQ"
+                    android:textColor="#DDFFFFFF"
+                    android:textSize="11sp" />
+
+                <Button
+                    android:id="@+id/btnTabVibe"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:text="Vibe FX"
+                    android:textColor="#DDFFFFFF"
+                    android:textSize="11sp" />
+
+                <Button
+                    android:id="@+id/btnTabTheme"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:text="Themes"
+                    android:textColor="#DDFFFFFF"
+                    android:textSize="11sp" />
+
+                <Button
+                    android:id="@+id/btnTabTimer"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:text="Timer"
+                    android:textColor="#DDFFFFFF"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- EXPANDABLE DRAWERS -->
+            <LinearLayout
+                android:id="@+id/drawerContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_drawer_panel"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:visibility="gone">
+
+                <!-- EQ DRAWER -->
+                <LinearLayout
+                    android:id="@+id/drawerEq"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnEqToggle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:text="HI-FI DSP: ON"
+                            android:textSize="11sp" />
+
+                        <Button
+                            android:id="@+id/btnEqCyclePreset"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:layout_marginStart="8dp"
+                            android:text="Next Preset"
+                            android:textColor="#FFFFFFFF"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/txtEqPresetLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="Harman Hi-Fi"
+                            android:textColor="#FFA78BFA"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Sub-Bass Punch"
+                        android:textColor="#CCFFFFFF"
+                        android:textSize="11sp" />
+
+                    <SeekBar
+                        android:id="@+id/seekLockSubBass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="3D Soundstage"
+                        android:textColor="#CCFFFFFF"
+                        android:textSize="11sp" />
+
+                    <SeekBar
+                        android:id="@+id/seekLockStage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100" />
+                </LinearLayout>
+
+                <!-- VIBE FX DRAWER -->
+                <LinearLayout
+                    android:id="@+id/drawerVibe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/btnSpeedSlowed"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:text="Slowed 0.85x"
+                        android:textSize="10.5sp" />
+
+                    <Button
+                        android:id="@+id/btnSpeedNormal"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:text="Normal 1.0x"
+                        android:textSize="10.5sp" />
+
+                    <Button
+                        android:id="@+id/btnSpeedNightcore"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:text="Nightcore"
+                        android:textSize="10.5sp" />
+                </LinearLayout>
+
+                <!-- THEMES DRAWER -->
+                <LinearLayout
+                    android:id="@+id/drawerTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/btnThemeBlur"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:text="Blur"
+                        android:textSize="10.5sp" />
+
+                    <Button
+                        android:id="@+id/btnThemeMesh"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1"
+                        android:text="Mesh"
+                        android:textSize="10.5sp" />
+
+                    <Button
+                        android:id="@+id/btnThemeAmoled"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1"
+                        android:text="AMOLED"
+                        android:textSize="10.5sp" />
+
+                    <Button
+                        android:id="@+id/btnThemeAurora"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1"
+                        android:text="Aurora"
+                        android:textSize="10.5sp" />
+                </LinearLayout>
+
+                <!-- TIMER DRAWER -->
+                <LinearLayout
+                    android:id="@+id/drawerTimer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/btnTimerOff"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:text="Off"
+                        android:textSize="11sp" />
+
+                    <Button
+                        android:id="@+id/btnTimer15"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1"
+                        android:text="15m"
+                        android:textSize="11sp" />
+
+                    <Button
+                        android:id="@+id/btnTimer30"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1"
+                        android:text="30m"
+                        android:textSize="11sp" />
+
+                    <Button
+                        android:id="@+id/btnTimer60"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1"
+                        android:text="60m"
+                        android:textSize="11sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- DISMISS HINT -->
+        <TextView
+            android:id="@+id/txtDismissLock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="10dp"
+            android:padding="8dp"
+            android:text="Tap here to return to system lock screen"
+            android:textColor="#88FFFFFF"
+            android:textSize="12sp" />
+    </LinearLayout>
+</FrameLayout>
